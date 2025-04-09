@@ -1,20 +1,15 @@
 import React, { useState } from 'react';
 import CheckBox from '../UI/CheckBox';
-function TaskItem(props) {
-    const [isChecked, setIsChecked] = useState(false);
 
-    const handleChange = (event) => {
-        setIsChecked(event.target.checked);
-        if (props.onChange) {
-            props.onChange(event.target.checked);
-        }
-    };
+
+function TaskItem({ taskData }) {
+      
     return (
         <>
-            {props.taskData.map(task => (
-                <tr>
+            {taskData.map(task => (
+                <tr key={task.id}>
                     <th>{task.id}</th>
-                    <th><CheckBox id={task.id} onChange={handleChange} /></th>
+                    <th><CheckBox id={task.id} stateCB={task.state}  /></th>
                     <th>{task.text}</th>
                     <th>{task.priority}</th>
                     <th>{task.dueDate}</th>
@@ -24,5 +19,7 @@ function TaskItem(props) {
         </>
     )
 }
+
+
 export default TaskItem;
 
