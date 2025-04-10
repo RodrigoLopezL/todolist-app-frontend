@@ -84,3 +84,23 @@ export const updateData = async (endpoint, id ,body) => {
     throw error;
   }
 };
+
+export const deleteData = async (id) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/todos/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return true;
+  } catch (error) {
+    console.error('Error posting data:', error);
+    throw error;
+  }
+};

@@ -4,7 +4,7 @@ import FilterToolBar from './components/features/FilterToolBar';
 import { fetchData } from './services/apiService';
 import Modal from './components/UI/Modal';
 import FormTodo from './components/features/FormTodo';
-
+import TimeBar from './components/features/TimeBar';
 function App() {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
@@ -40,14 +40,27 @@ function App() {
     closeModal(); // Close the modal after successful creation
   };
 
+  const handleTaskUpdated = async (updatedTask) => {
+    try {
+      // Aquí podrías no necesitar hacer otra llamada a la API si 'updatedTask'
+      // ya contiene los datos actualizados del servidor.
+      // Simplemente actualiza el estado local 'data'.
+      setData(prevData =>
+        prevData.map(task => (task.id === updatedTask.id ? updatedTask : task))
+      );
+      closeModal(); // Cierra el modal después de la actualización
+    } catch (error) {
+      console.error("Error al actualizar la tarea en App:", error);
+      // Manejar el error aquí (mostrar un mensaje al usuario, etc.)
+    }
+  };
+
   const openModal = () => {
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
-    loadData();
-
   };
 
   useEffect(() => {
@@ -83,10 +96,11 @@ function App() {
             + New To do
           </button>
           <Modal isOpen={isModalOpen} onClose={closeModal}>
-            <FormTodo onTaskCreated={handleTaskCreated}  />
+            <FormTodo onTaskCreated={handleTaskCreated} onClose={closeModal} />
           </Modal>
         </div>
-        <TaskList dataApi={data} onTaskCreated={handleTaskCreated} />
+        <TaskList dataApi={data} onTaskUpdated={handleTaskUpdated} />
+        <TimeBar/>
       </div>
     )
   }

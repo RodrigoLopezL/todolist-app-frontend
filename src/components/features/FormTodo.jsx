@@ -2,7 +2,7 @@ import React, { use, useState, useEffect } from 'react';
 import { getFormattedTimestamp } from '../utils/dateUtils';
 import { postData } from '../../services/apiService';
 import { updateData } from '../../services/apiService';
-function FormTodo({ onTaskCreated, taskData, onClose }) {
+function FormTodo({ onTaskUpdated,onTaskCreated, taskData, onClose }) {
 
     const [text, setText] = useState('');
     const [dueDate, setDueDate] = useState('');
@@ -47,17 +47,18 @@ function FormTodo({ onTaskCreated, taskData, onClose }) {
             priority: priority,
             state: taskData ? taskData.state:false,
         };
+        
         try {
             let response;
-            if (taskData && taskData.id) {
+            if (taskData) {
                 // If a task with an ID exists, it's an update
                 response = await updateData("todos", taskData.id, task);
                 if (response) {
                     // Assuming your API returns the updated task
+                    onTaskUpdated(task)
                 }
             } else {
                 // If no task ID, it's a new task
-                task.creationDate = getFormattedTimestamp();
                 response = await postData("todos", task);
                 if (response) {
                     onTaskCreated(response);
