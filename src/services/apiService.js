@@ -41,10 +41,32 @@ export const postData = async (endpoint, body) => {
   }
 };
 
-export const patchData = async (d, action) => {
+export const patchData = async (id, action) => {
   try {
     const response = await fetch(`${API_BASE_URL}/todos/${id}/${action}`, {
       method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error posting data:', error);
+    throw error;
+  }
+};
+
+
+export const updateData = async (endpoint, id ,body) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/${endpoint}/${id}`, {
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },

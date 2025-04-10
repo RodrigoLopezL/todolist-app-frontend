@@ -7,7 +7,6 @@ function FilterToolBar({ onSearchFilter }) {
 
     const handleTextChange = (event) => {
         setTextFilter(event.target.value);
-      
         setSelectPriority('');
         setSelectState('');
     };
@@ -64,7 +63,8 @@ function FilterToolBar({ onSearchFilter }) {
                             </select>
                         </div>
                     </div>
-                    <button className=' basis-1/3 m-4  bg-green-800 ' onClick={handleClick}>Search</button>
+                    <button className=' basis-1/3 m-6  bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ' onClick={handleClick}>Search</button>
+                    
                 </div>
             </div>
         </div>
