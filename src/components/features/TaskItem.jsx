@@ -23,17 +23,17 @@ function TaskItem({ task, onCheckboxChange, onTaskUpdated , onTaskDelete }) {
 
     return (
         <tr>
-            <th className="border border-gray-300"><input
+            <th className="border border-gray-400"><input
                 id={task.id}
                 type="checkbox"
                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                 checked={task.state}
                 onChange={handleChange}
             /></th>
-            <th className="border border-gray-300">{task.text}</th>
-            <th className="border border-gray-300">{task.priority}</th>
-            <th className="border border-gray-300">{task.dueDate.split('T')[0]}</th>
-            <th className="border border-gray-300">
+            <th className="border border-gray-400">{task.text}</th>
+            <th className="border border-gray-400">{task.priority}</th>
+            <th className="border border-gray-400">{task.dueDate.split('T')[0]}</th>
+            <th className="border border-gray-400">
                 <button onClick={() => onTaskDelete(task.id)} className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 m-2 rounded focus:outline-none focus:shadow-outline" type="button">
                     X
                 </button>

@@ -19,4 +19,20 @@ export function getFormattedTimestamp() {
     // Construct the string in the desired format
     return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
   }
+
+  export function parseFormatTimePT(formatPT) {
+    if (!formatPT || typeof formatPT !== 'string' || !formatPT.startsWith('PT')) {
+      return { days: 0, hours: 0, minutes: 0 }; 
+    }
+    const splitTime = formatPT.substring(2); 
+
+    const matchHours = splitTime.match(/(\d+)H/);
+    const matchMinutes = splitTime.match(/(\d+)M/);
+  
+    const totalHours = matchHours ? parseInt(matchHours[1], 10) : 0;
+    const totalMinutes = matchMinutes ? parseInt(matchMinutes[1], 10) : 0;
+  
+  
+    return `${totalHours} : ${totalMinutes} mins`;
+  }
   

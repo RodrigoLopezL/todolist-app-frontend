@@ -23,7 +23,10 @@ function App() {
       } else if (filters.state) {
         const response = await fetchData("todos" + "?action=FilterStatus&status=" + filters.state);
         setData(response);
-      } else {
+      } else if(filters.clean){
+        const response = await fetchData("todos");
+        setData(response);
+      }else{  
         setError(null);
       }
     } catch (err) {
@@ -89,9 +92,9 @@ function App() {
   if (data) {
     return (
       <div className='w-full h-fit'>
-        <h2>Todo App</h2>
+        <h2 className='text-xl font-bold mb-4 m-3'>Todo App</h2>
         <FilterToolBar onSearchFilter={getData} />
-        <div>
+        <div className='p-3'>
           <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={openModal}>
             + New To do
           </button>
@@ -100,7 +103,7 @@ function App() {
           </Modal>
         </div>
         <TaskList dataApi={data} onTaskUpdated={handleTaskUpdated} />
-        <TimeBar/>
+        <TimeBar />
       </div>
     )
   }

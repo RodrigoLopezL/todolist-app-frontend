@@ -48,11 +48,11 @@ function TaskList({ dataApi, onTaskUpdated }) {
             <table className="w-full border-collapse border border-gray-400">
                 <thead>
                     <tr>
-                        <th className="border border-gray-300">Status</th>
-                        <th className="border border-gray-300">Name</th>
-                        <th className="border border-gray-300">Priority</th>
-                        <th className="border border-gray-300">Due Date</th>
-                        <th className="border border-gray-300">Actions</th>
+                        <th className="border border-gray-400">Status</th>
+                        <th className="border border-gray-400">Name</th>
+                        <th className="border border-gray-400">Priority</th>
+                        <th className="border border-gray-400">Due Date</th>
+                        <th className="border border-gray-400">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
