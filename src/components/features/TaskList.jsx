@@ -3,7 +3,7 @@ import TaskItem from './TaskItem';
 import { patchData } from '../../services/apiService';
 import { deleteData } from '../../services/apiService';
 
-function TaskList({ dataApi, onTaskUpdated }) {
+function TaskList({ dataApi, onTaskUpdated ,onTaskPatch}) {
     const [data, setData] = useState(dataApi);
     const [error, setError] = useState(null);
 
@@ -11,23 +11,7 @@ function TaskList({ dataApi, onTaskUpdated }) {
         setData(dataApi);
     }, [dataApi]);
 
-    const patchTask = async (taskId, isChecked) => {
-        const action = isChecked ? 'done' : 'undone'; // Defines the action based on the status of the checkbox
-        try {
-            const response = await patchData(taskId, action);
-            if (response) {  // The patchData function already throws an error if the response is not ok.
-                console.log(`Task ${taskId} status changed ${action}`);
-                setData(prevData =>
-                    prevData.map(task =>
-                        task.id === taskId ? { ...task, state: isChecked } : task
-                    )
-                );//search more about this function
-            }
-        } catch (error) {
-            setError(error);
-            console.error("Error patching task:", error);
-        }
-    };
+    
 
     const deleteTask = async (taskId) => {
 
@@ -58,7 +42,7 @@ function TaskList({ dataApi, onTaskUpdated }) {
                 <tbody>
                     {data &&
                         data.map(task => (
-                            <TaskItem key={task.id} task={task} onCheckboxChange={patchTask} onTaskUpdated={onTaskUpdated} onTaskDelete={deleteTask} />
+                            <TaskItem key={task.id} task={task} onTaskUpdated={onTaskUpdated} onTaskDelete={deleteTask} onTaskPatch={onTaskPatch} />
                         ))
                     }
                 </tbody>

@@ -52,9 +52,9 @@ function FilterToolBar({ onSearchFilter }) {
                             <label className='font-bold mt-2 mb-2'>Priority</label>
                             <select name="selectPriorityTask" id="selectPriorityTask" value={selectPriority} onChange={handlePriorityChange} className="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                                 <option >None</option>
-                                <option value="?priority=LOW&action=FilterPriority">LOW</option>
-                                <option value="?priority=MEDIUM&action=FilterPriority">MEDIUM</option>
-                                <option value="?priority=HIGH&action=FilterPriority">HIGH</option>
+                                <option value="LOW">LOW</option>
+                                <option value="MEDIUM">MEDIUM</option>
+                                <option value="HIGH">HIGH</option>
                             </select>
                         </div>
 

@@ -40,12 +40,14 @@ function FormTodo({ onTaskUpdated,onTaskCreated, taskData, onClose }) {
 
         const task = {
             id: taskData ? taskData.id : 0,
-            creationDate: taskData ? taskData.creationDate : getFormattedTimestamp(),
-            dueDate: `${dueDate}T00:00:00`,
-            avgTime: taskData ? taskData.avgTime :"00:00:00",
             text: text,
+            dueDate: `${dueDate}T00:00:00`,
             priority: priority,
             state: taskData ? taskData.state:false,
+            creationDate: taskData ? taskData.creationDate : getFormattedTimestamp(),
+            doneDate: taskData ? taskData.doneDate : null,
+            timeFrame: taskData ? taskData.timeFrame :null,           
+            
         };
         
         try {

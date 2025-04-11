@@ -11,9 +11,16 @@ function TimeBar() {
             setLoading(true);
             setError(null);
             try {
-                const reponse = await fetchData('todos/time');
-                setData(reponse);
-                
+                // const reponse = await fetchData('todos/time');
+                // setData(reponse);
+                const response = await fetch("http://localhost:8080/todos/time");
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const dataResponse = await response.json();
+                setData(dataResponse);                
+
             } catch (error) {
                 setError(error);
             } finally {
@@ -28,7 +35,8 @@ function TimeBar() {
     }
 
     if (error) {
-        return <p>Error loading data: {error.message}</p>;
+        console.log(error)
+        return null;
     }
     if (data) {
         return (

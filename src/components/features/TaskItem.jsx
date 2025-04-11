@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from '../UI/Modal';
 import FormTodo from './FormTodo';
-function TaskItem({ task, onCheckboxChange, onTaskUpdated , onTaskDelete }) {
+function TaskItem({ task, onTaskPatch, onTaskUpdated , onTaskDelete }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [taskToEdit, setTaskToEdit] = useState(null);
 
@@ -18,7 +18,7 @@ function TaskItem({ task, onCheckboxChange, onTaskUpdated , onTaskDelete }) {
     const handleChange = (event) => {
         const taskId = parseInt(event.target.id); // Obtén el ID de la tarea
         const isChecked = event.target.checked; // Obtén el nuevo estado del checkbox
-        onCheckboxChange(taskId, isChecked); // Llama a la función del padre
+        onTaskPatch(taskId, isChecked); // Llama a la función del padre
     };
 
     return (
